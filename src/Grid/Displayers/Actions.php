@@ -197,8 +197,8 @@ EOT;
         $this->setupDeleteScript();
 
         return <<<EOT
-<a href="javascript:void(0);" data-id="{$this->getKey()}" class="{$this->grid->getGridRowName()}-delete">
-    <i class="fa fa-trash"></i>
+<a href="javascript:void(0);" data-id="{$this->getKey()}" class="btn btn-danger {$this->grid->getGridRowName()}-delete">
+    削除
 </a>
 EOT;
     }
