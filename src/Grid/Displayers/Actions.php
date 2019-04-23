@@ -167,8 +167,8 @@ class Actions extends AbstractDisplayer
     protected function renderView()
     {
         return <<<EOT
-<a href="{$this->getResource()}/{$this->getRouteKey()}">
-    <i class="fa fa-eye"></i>
+<a href="{$this->getResource()}/{$this->getRouteKey()}" class="margin-r-5 btn btn-info">
+詳細
 </a>
 EOT;
     }
@@ -181,8 +181,8 @@ EOT;
     protected function renderEdit()
     {
         return <<<EOT
-<a href="{$this->getResource()}/{$this->getRouteKey()}/edit">
-    <i class="fa fa-edit"></i>
+<a href="{$this->getResource()}/{$this->getRouteKey()}/edit" class="margin-r-5 btn btn-success">
+編集
 </a>
 EOT;
     }
@@ -197,8 +197,8 @@ EOT;
         $this->setupDeleteScript();
 
         return <<<EOT
-<a href="javascript:void(0);" data-id="{$this->getKey()}" class="btn btn-danger {$this->grid->getGridRowName()}-delete">
-    削除
+<a href="javascript:void(0);" data-id="{$this->getKey()}" class="margin-r-5 btn btn-danger {$this->grid->getGridRowName()}-delete">
+削除
 </a>
 EOT;
     }
