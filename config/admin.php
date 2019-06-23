@@ -112,6 +112,8 @@ return [
 
         'controller' => App\Admin\Controllers\AuthController::class,
 
+        'guard' => 'admin',
+
         'guards' => [
             'admin' => [
                 'driver'   => 'session',
@@ -227,6 +229,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | User default avatar
+    |--------------------------------------------------------------------------
+    |
+    | Set a default avatar for newly created users.
+    |
+    */
+    'default_avatar' => '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg',
+
+    /*
+    |--------------------------------------------------------------------------
     | Admin map field provider
     |--------------------------------------------------------------------------
     |
@@ -313,6 +325,27 @@ return [
     | Whether enable default breadcrumb for every page content.
     */
     'enable_default_breadcrumb' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Enable/Disable assets minify
+    |--------------------------------------------------------------------------
+    */
+    'minify_assets' => [
+
+        // Assets will not be minified.
+        'excepts' => [
+
+        ],
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Enable/Disable sidebar menu search
+    |--------------------------------------------------------------------------
+    */
+    'enable_menu_search' => true,
 
     /*
     |--------------------------------------------------------------------------
