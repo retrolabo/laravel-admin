@@ -28,6 +28,7 @@ class UserController extends AdminController
         $grid = new Grid(new $userModel());
 
         $grid->column('id', 'ID')->sortable();
+        $grid->column('email', trans('admin.email'));
         $grid->column('username', trans('admin.username'));
         $grid->column('name', trans('admin.name'));
         $grid->column('roles', trans('admin.roles'))->pluck('name')->label();
@@ -63,6 +64,7 @@ class UserController extends AdminController
         $show = new Show($userModel::findOrFail($id));
 
         $show->field('id', 'ID');
+        $show->field('email', trans('admin.email'));
         $show->field('username', trans('admin.username'));
         $show->field('name', trans('admin.name'));
         $show->field('roles', trans('admin.roles'))->as(function ($roles) {
@@ -94,6 +96,7 @@ class UserController extends AdminController
         $connection = config('admin.database.connection');
 
         $form->display('id', 'ID');
+        $form->email('email', trans('admin.email'))->rules('required');
         $form->text('username', trans('admin.username'))
             ->creationRules(['required', "unique:{$connection}.{$userTable}"])
             ->updateRules(['required', "unique:{$connection}.{$userTable},username,{{id}}"]);
