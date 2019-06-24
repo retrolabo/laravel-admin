@@ -2,6 +2,7 @@
 
 namespace Encore\Admin\Controllers;
 
+use Encore\Admin\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
@@ -86,6 +87,7 @@ class UserController extends AdminController
      */
     public function form()
     {
+        $admin = new Admin;
         $userModel = config('admin.database.users_model');
         $permissionModel = config('admin.database.permissions_model');
         $roleModel = config('admin.database.roles_model');
@@ -116,6 +118,13 @@ class UserController extends AdminController
 
         $form->display('created_at', trans('admin.created_at'));
         $form->display('updated_at', trans('admin.updated_at'));
+
+        $form->hidden('registered_administor_id')->default(function () use ($admin) {
+            return $admin->user()->id;
+        });
+
+        $form->hidden('changed_administor_id')->value($admin->user()->id);
+        $form->hidden('updated_id')->value($admin->user()->id);
 
         $form->saving(function (Form $form) {
             if ($form->password && $form->model()->password != $form->password) {
