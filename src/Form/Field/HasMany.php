@@ -144,6 +144,20 @@ class HasMany extends Field
         foreach ($rules as $column => $rule) {
             foreach (array_keys($input[$this->column]) as $key) {
                 $newRules["{$this->column}.$key.$column"] = $rule;
+                if(in_array('image', $rule)) {
+                    $names = explode('.', "{$this->column}.$key.$column");
+                    $v = $input;
+                    foreach($names as $k) {
+                        $v = $v[$k];
+                    }
+                    if(gettype($v) === 'string' || !$v) {
+                        if(in_array('required', $rule) && empty($v)) {
+                            $newRules["{$this->column}.$key.$column"] = ['required'];
+                        } else {
+                            unset($newRules["{$this->column}.$key.$column"]);
+                        }
+                    }
+                }
                 if (isset($input[$this->column][$key][$column]) &&
                     is_array($input[$this->column][$key][$column])) {
                     foreach ($input[$this->column][$key][$column] as $vkey => $value) {

@@ -27,6 +27,10 @@ class Image extends File
      */
     public function prepare($image)
     {
+        if(!($image instanceof UploadedFile)) {
+            return $image;
+        }
+
         if (request()->has(static::FILE_DELETE_FLAG)) {
             return $this->destroy();
         }

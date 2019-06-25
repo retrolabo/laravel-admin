@@ -275,7 +275,8 @@ class NestedForm
                 $value = $field->prepare($value);
             }
 
-            if (($field instanceof \Encore\Admin\Form\Field\Hidden) || $value != $field->original()) {
+            if (($field instanceof \Encore\Admin\Form\Field\Hidden) || $value != $field->original() ||
+                (($field instanceof \Encore\Admin\Form\Field\Image)) && gettype($value) === 'string') {
                 if (is_array($columns)) {
                     foreach ($columns as $name => $column) {
                         Arr::set($prepared, $column, $value[$name]);
